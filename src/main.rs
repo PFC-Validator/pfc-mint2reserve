@@ -3,7 +3,7 @@ mod messages;
 
 use anyhow::Result;
 
-use crate::messages::{NewNFTRequest, TerraPeepMeta};
+use crate::messages::{NFTMeta, NewNFTRequest};
 use dotenv::dotenv;
 use secp256k1::{All, Secp256k1};
 use std::path::Path;
@@ -41,7 +41,7 @@ async fn run() -> Result<()> {
                 if name.ends_with(".json") {
                     let meta_file_name = meta_file.path();
                     // println!("name {:?}", meta_file_name);
-                    let tp = TerraPeepMeta::read_meta(&meta_file_name)?;
+                    let tp = NFTMeta::read_meta(&meta_file_name)?;
                     let tp_json = serde_json::to_string(&tp)?;
                     let new_nft = NewNFTRequest {
                         name: tp.name.clone(),

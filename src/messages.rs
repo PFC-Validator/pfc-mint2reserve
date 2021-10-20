@@ -24,7 +24,7 @@ pub struct Trait {
 }
 
 #[derive(Serialize, Deserialize)]
-pub struct TerraPeepMeta {
+pub struct NFTMeta {
     pub name: String,
     pub token_uri: String,
     pub image: String,
@@ -36,10 +36,10 @@ pub struct TerraPeepMeta {
     pub animation_url: Option<String>,
     pub youtube_url: Option<String>,
 }
-impl TerraPeepMeta {
+impl NFTMeta {
     pub(crate) fn read_meta(file_name: &Path) -> anyhow::Result<Self> {
         let file_path = File::open(file_name)?;
-        let peep: TerraPeepMeta = serde_json::from_reader(file_path)?;
+        let peep: NFTMeta = serde_json::from_reader(file_path)?;
         Ok(peep)
     }
 }
